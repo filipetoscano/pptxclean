@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/sln/">
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Lefty.Powerpoint/Lefty.Powerpoint.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj" />
+  </Folder>
+</Solution>
