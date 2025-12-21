@@ -6,7 +6,10 @@ namespace Lefty.Powerpoint.Cli;
 
 /// <summary />
 [Command( "pptxdo" )]
-[Subcommand( typeof( CleanCommand ))]
+[Subcommand( typeof( CheckCommand ) )]
+[Subcommand( typeof( CleanCommand ) )]
+[Subcommand( typeof( GetCommand ) )]
+[Subcommand( typeof( ReleaseCommand ) )]
 public class Program
 {
     /// <summary />
@@ -31,7 +34,7 @@ public class Program
         svc.AddLogging( loggingBuilder =>
             loggingBuilder.AddSerilog( dispose: true ) );
 
-        svc.AddTransient<PowerpointCleanerService>();
+        svc.AddTransient<PowerpointService>();
 
         var sp = svc.BuildServiceProvider();
 
@@ -74,5 +77,14 @@ public class Program
 
             return 2;
         }
+    }
+
+
+    /// <summary />
+    public int OnExecute( CommandLineApplication app )
+    {
+        app.ShowHelp();
+
+        return 1;
     }
 }
