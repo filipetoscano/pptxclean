@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/cicd/">
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".github/workflows/release.yml" />
+    <File Path="cicd/ci.sh" />
+    <File Path="cicd/release.sh" />
+  </Folder>
   <Folder Name="/sln/">
     <File Path=".gitignore" />
     <File Path="README.md" />
