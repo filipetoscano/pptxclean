@@ -159,7 +159,7 @@ public class PowerpointService
             Filename = "",
         };
 
-        rev.Filename = rest + " " + rev.Moment.ToString( "yyyyMMddhhmm" ) + " Rev" + rev.Number.ToString( "000" ) + extn;
+        rev.Filename = rest + " " + rev.Moment.ToString( "yyyyMMdd" ) + " Rev" + rev.Number.ToString( "0" ) + extn;
 
 
         /*
@@ -351,7 +351,7 @@ public class PowerpointService
 
                     if ( text == "<DATE>" )
                     {
-                        string date = rev.Moment.ToString( "yyyy MMM dd" );
+                        string date = rev.Moment.ToString( "dd MMMM yyyy" );
 
                         _logger.LogInformation( "Updating date from '<DATE>' to '{Date}'", date );
                         run.Text.Text = date;
