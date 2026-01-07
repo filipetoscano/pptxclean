@@ -5,7 +5,7 @@ using Serilog;
 namespace Lefty.Powerpoint.Cli;
 
 /// <summary />
-[Command( "pptxdo" )]
+[Command( "pptxclean" )]
 [Subcommand( typeof( CheckCommand ) )]
 [Subcommand( typeof( CleanCommand ) )]
 [Subcommand( typeof( GetCommand ) )]
