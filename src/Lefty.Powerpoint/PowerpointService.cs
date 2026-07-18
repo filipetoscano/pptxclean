@@ -64,7 +64,7 @@ public class PowerpointService
          * 
          */
         var presentation = pptx.PresentationPart.Presentation;
-        var slideIdList = presentation.SlideIdList;
+        var slideIdList = presentation!.SlideIdList;
 
         if ( slideIdList == null )
             return ps;
@@ -185,7 +185,7 @@ public class PowerpointService
 
 
         //
-        var presentation = pptx.PresentationPart.Presentation;
+        var presentation = pptx.PresentationPart.Presentation!;
         var slideIdList = presentation.SlideIdList;
 
         if ( slideIdList == null )
@@ -229,7 +229,7 @@ public class PowerpointService
 
                 foreach ( var commentPart in commentParts )
                 {
-                    _logger.LogDebug( "Nr Comments: {NrComments}", commentPart.CommentList.Count() );
+                    _logger.LogDebug( "Nr Comments: {NrComments}", commentPart.CommentList?.Count() ?? 0 );
 
                     slidePart.DeletePart( commentPart );
                 }
@@ -297,7 +297,7 @@ public class PowerpointService
         if ( pptx.PresentationPart == null )
             return;
 
-        var presentation = pptx.PresentationPart.Presentation;
+        var presentation = pptx.PresentationPart.Presentation!;
         var slideIdList = presentation.SlideIdList;
 
         if ( slideIdList == null || !slideIdList.ChildElements.Any() )
@@ -311,7 +311,7 @@ public class PowerpointService
             return;
 
         var firstSlidePart = (SlidePart) pptx.PresentationPart.GetPartById( firstSlideId.RelationshipId! );
-        var slide = firstSlidePart.Slide;
+        var slide = firstSlidePart.Slide!;
 
 
         // Get all shapes in the slide

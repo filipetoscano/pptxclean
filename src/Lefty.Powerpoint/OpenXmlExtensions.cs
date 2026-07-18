@@ -15,6 +15,9 @@ internal static class OpenXmlExtensions
     /// <returns>True if slide is hidden, false otherwise.</returns>
     internal static bool IsHidden( this SlidePart slide )
     {
+        if ( slide.Slide == null )
+            return false;
+
         if ( slide.Slide.Show == null )
             return false;
 
@@ -36,7 +39,7 @@ internal static class OpenXmlExtensions
     internal static string? SlideTitle( this SlidePart slide )
     {
         // Look for the title shape (typically the first shape with a title placeholder type)
-        var s = slide.Slide;
+        var s = slide.Slide!;
         var shapes = s.CommonSlideData?.ShapeTree?.Elements<Shape>();
 
         if ( shapes == null )
