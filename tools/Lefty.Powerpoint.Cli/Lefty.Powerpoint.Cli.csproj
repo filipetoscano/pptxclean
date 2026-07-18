@@ -10,7 +10,7 @@
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <!-- Targets -->
-    <RuntimeIdentifiers>win-x64;osx-x64;linux-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;osx-arm64;linux-x64</RuntimeIdentifiers>
 
     <!-- Executable -->
     <ApplicationIcon>app.ico</ApplicationIcon>
