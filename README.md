@@ -7,9 +7,32 @@ pptxclean
 Installation
 --------------------------------------------------------------------------
 
+### Windows
+
 * Download zip from Releases
 * Extract binary file to `c:\programs\bin`
 * Add `c:\programs\bin` to `PATH`
+
+### macOS
+
+Download the appropriate zip from [Releases](https://github.com/filipetoscano/pptxclean/releases):
+
+* Apple Silicon (`arm64`): `pptxclean-osx-arm64-*.zip`
+* Intel (`x86_64`): `pptxclean-osx-x64-*.zip`
+
+You can check your Mac's architecture and install the executable with:
+
+```bash
+uname -m
+unzip pptxclean-osx-arm64-*.zip # Use osx-x64 on an Intel Mac
+chmod +x pptxclean
+sudo mv pptxclean /usr/local/bin/pptxclean
+pptxclean --help
+```
+
+The macOS binaries are currently unsigned. If macOS blocks the first launch,
+open **System Settings > Privacy & Security**, choose **Open Anyway** for
+`pptxclean`, and try again.
 
 
 Usage
