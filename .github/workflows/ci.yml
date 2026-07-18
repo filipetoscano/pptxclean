@@ -29,3 +29,42 @@ jobs:
 
       - name: Run ci.sh
         run: ./cicd/ci.sh
+
+  macos-smoke:
+    name: macOS smoke (${{ matrix.rid }})
+    strategy:
+      matrix:
+        include:
+          - runner: macos-15
+            rid: osx-arm64
+            architecture: arm64
+          - runner: macos-15-intel
+            rid: osx-x64
+            architecture: x86_64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET SDK 9.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Publish ${{ matrix.rid }}
+        run: >-
+          dotnet publish
+          -c Release
+          --runtime=${{ matrix.rid }}
+          --self-contained
+          tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj
+          -o tmp/${{ matrix.rid }}
+
+      - name: Package and extract
+        run: |
+          mkdir -p tmp/package tmp/smoke
+          zip -j tmp/package/pptxclean-${{ matrix.rid }}.zip tmp/${{ matrix.rid }}/pptxclean
+          unzip tmp/package/pptxclean-${{ matrix.rid }}.zip -d tmp/smoke
+
+      - name: Verify architecture and launch
+        run: |
+          file tmp/smoke/pptxclean | grep -q '${{ matrix.architecture }}'
+          tmp/smoke/pptxclean --help

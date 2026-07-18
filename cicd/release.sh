@@ -51,6 +51,7 @@ dotnet build   -c Release --no-restore -p:Version=${VERSION}
 dotnet publish -c Release --runtime=win-x64   --self-contained tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj -p:Version=${VERSION} -o tmp/win-x64
 dotnet publish -c Release --runtime=linux-x64 --self-contained tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj -p:Version=${VERSION} -o tmp/linux-x64
 dotnet publish -c Release --runtime=osx-x64   --self-contained tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj -p:Version=${VERSION} -o tmp/osx-x64
+dotnet publish -c Release --runtime=osx-arm64 --self-contained tools/Lefty.Powerpoint.Cli/Lefty.Powerpoint.Cli.csproj -p:Version=${VERSION} -o tmp/osx-arm64
 
 mkdir -p artifacts
 rm -f artifacts/*.zip
@@ -58,6 +59,7 @@ rm -f artifacts/*.zip
 zip -j -r  artifacts/pptxclean-win-x64-${VERSION}.zip    tmp/win-x64/pptxclean.exe
 zip -j -r  artifacts/pptxclean-linux-x64-${VERSION}.zip  tmp/linux-x64/pptxclean
 zip -j -r  artifacts/pptxclean-osx-x64-${VERSION}.zip    tmp/osx-x64/pptxclean
+zip -j -r  artifacts/pptxclean-osx-arm64-${VERSION}.zip  tmp/osx-arm64/pptxclean
 
 
 #
@@ -67,6 +69,7 @@ zip -j -r  artifacts/pptxclean-osx-x64-${VERSION}.zip    tmp/osx-x64/pptxclean
 gh release create v${VERSION} --notes="Release v${VERSION}" \
    artifacts/pptxclean-win-x64-${VERSION}.zip \
    artifacts/pptxclean-linux-x64-${VERSION}.zip \
-   artifacts/pptxclean-osx-x64-${VERSION}.zip
+   artifacts/pptxclean-osx-x64-${VERSION}.zip \
+   artifacts/pptxclean-osx-arm64-${VERSION}.zip
 
 # eof
